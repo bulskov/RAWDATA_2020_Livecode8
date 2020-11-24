@@ -12,15 +12,17 @@
     
 <script type="text/html" id="add-person">
     <div data-bind="with: selectedPerson">
-        <input data-bind="textInput: name"/>
-        <input data-bind="textInput: age"/>
+        <input data-bind="textInput: name" />
+        <input data-bind="textInput: age" />
+
     </div>
+    <select data-bind="options: levels, selectedOptions: selectedLevel"></select>
     <button data-bind="click: createPerson">Create</button>
     <button data-bind="click: cancelAddPerson">Cancel</button>
 </script>
    
 <script type="text/html" id="person-list">
-    <button data-bind="click: addPerson">Add Person</button>
+    <button data-bind="click: addPerson, disable: showDebug">Add Person</button>
     <div>
         <ul data-bind="foreach: persons">
             <li data-bind="click: $parent.selectPerson">
@@ -35,7 +37,10 @@
     </div>
 </script>
 
-<pre class="debug" data-bind="text: ko.toJSON($root)"></pre>
+<div>
+    Show debug<input type="checkbox" data-bind="checked: showDebug"/>
+    <pre class="debug" data-bind="text: ko.toJSON($root), visible: showDebug"></pre>
+</div>
 <script data-main="js/main.js" src="js/lib/require.js/require.js"></script>
 </body>
 </html>
