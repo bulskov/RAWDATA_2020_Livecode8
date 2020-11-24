@@ -6,13 +6,13 @@
     ];
     let selectedPerson = ko.observable();
 
-
-    let selectPerson = (person) => {
+   let selectPerson = (person) => {
         console.log(person);
         selectedPerson(person);
     }
 
     let addPerson = () => {
+        selectedPerson({ name: ko.observable(), age: ko.observable() });
         currentTemplate("add-person");
     }
 
@@ -20,8 +20,13 @@
         currentTemplate("person-list");
     } 
 
+    let createPerson = () => {
+        persons.push(selectedPerson());
+        currentTemplate("person-list");
+    }
+
     selectedPerson.subscribe(function(newvalue) {
-        console.log(newvalue);
+        //console.log(newvalue);
     });
 
     return {
@@ -30,6 +35,7 @@
         selectedPerson,
         selectPerson,
         addPerson,
-        cancelAddPerson
+        cancelAddPerson,
+        createPerson
     };
 });
