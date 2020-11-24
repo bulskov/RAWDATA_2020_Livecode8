@@ -2,11 +2,38 @@
 <html>
 <head>
     <title>index</title>
+    <link href="css/style.css" rel="stylesheet" />
 </head>
 <body>
 <h1>More Knockout</h1>
 
+<div data-bind="template: currentTemplate"></div>
 
+    
+<script type="text/html" id="add-person">
+         <input />
+        <input />
+        <button>Create</button>
+        <button data-bind="click: cancelAddPerson">Cancel</button>
+</script>
+   
+<script type="text/html" id="person-list">
+    <button data-bind="click: addPerson">Add Person</button>
+    <div>
+        <ul data-bind="foreach: persons">
+            <li data-bind="click: $parent.selectPerson">
+                <span data-bind="text: name"></span>
+            </li>
+        </ul>
+
+        <div data-bind="with: selectedPerson">
+            <input data-bind="textInput: name" />
+            <input data-bind="textInput: age" />
+        </div>
+    </div>
+</script>
+
+<pre class="debug" data-bind="text: ko.toJSON($root)"></pre>
 <script data-main="js/main.js" src="js/lib/require.js/require.js"></script>
 </body>
 </html>

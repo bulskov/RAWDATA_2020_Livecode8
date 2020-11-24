@@ -8,6 +8,6 @@ require.config({
 });
 
 
-require(['knockout'], function(ko) {
-    ko.applyBindings({});
+require(['knockout', 'viewModel'], function(ko, vm) {
+    ko.applyBindings(vm);
 });
